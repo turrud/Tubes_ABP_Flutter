@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:tubes_abp_flutter/home/home_screen.dart';
+import 'package:tubes_abp_flutter/screen/home_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -67,8 +67,10 @@ class WelcomeScreen extends StatelessWidget {
               FloatingActionButton(
                 backgroundColor: const Color.fromARGB(248, 5, 190, 144),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const HomeScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()));
                 },
                 child: const Icon(Icons.arrow_forward),
               ),

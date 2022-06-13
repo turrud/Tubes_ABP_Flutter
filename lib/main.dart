@@ -10,16 +10,9 @@ class GoWis extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      title: 'Go Wis',
-      //import theme from theme data
-
-      home: const WelcomeScreen(),
+      home: WelcomeScreen(),
     );
   }
 }
