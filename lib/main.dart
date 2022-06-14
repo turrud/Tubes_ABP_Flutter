@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tubes_abp_flutter/WelcomeScreen/welcome.dart';
+// import 'package:tubes_abp_flutter/widgets/bottom_navigation_bar.dart';
+// import 'package:tubes_abp_flutter/screen/home_screen.dart';
 
 void main() {
   runApp(const GoWis());

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:tubes_abp_flutter/screen/home_screen.dart';
+import 'package:tubes_abp_flutter/screen/news_screen.dart';
+import 'package:tubes_abp_flutter/screen/paket_screen.dart';
+import 'package:tubes_abp_flutter/screen/rent_screen.dart';
 
 class BottomNavigationBarGoWis extends StatefulWidget {
   const BottomNavigationBarGoWis({Key? key}) : super(key: key);
@@ -13,65 +15,61 @@ class BottomNavigationBarGoWis extends StatefulWidget {
 class _BottomNavigationBarGoWisState extends State<BottomNavigationBarGoWis> {
   int _selectedIndex = 0;
 
+  final List<Widget> _children = [
+    // const Text('home'),
+    const HomeScreen(),
+    const NewsScreen(),
+    const PaketScreen(),
+    const RentScreen(),
+  ];
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
 
-  var bottomNavStyle =
-      GoogleFonts.lato(fontSize: 12, fontWeight: FontWeight.w500);
+  // var bottomNavStyle =
+  //     GoogleFonts.lato(fontSize: 12, fontWeight: FontWeight.w500);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(color: Colors.white, boxShadow: [
-        BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            spreadRadius: 2,
-            blurRadius: 15,
-            offset: const Offset(0, 5))
-      ]),
-      child: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
+    return Scaffold(
+      body: _children[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: _selectedIndex == 0
-                  ? SvgPicture.asset('assets/svg/icon_home_colored.svg')
-                  : SvgPicture.asset('assets/svg/icon_home.svg'),
-              label: 'Home'),
-          BottomNavigationBarItem(
-            icon: _selectedIndex == 1
-                ? SvgPicture.asset('assets/svg/icon_heart_colored.svg')
-                : SvgPicture.asset('assets/svg/icon_heart.svg'),
-            label: 'Heart',
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: _selectedIndex == 2
-                ? SvgPicture.asset('assets/svg/icon_plus_colored.svg')
-                : SvgPicture.asset('assets/svg/icon_plus.svg'),
-            label: 'Plus',
+            icon: Icon(Icons.newspaper),
+            label: 'News',
           ),
           BottomNavigationBarItem(
-            icon: _selectedIndex == 3
-                ? SvgPicture.asset('assets/svg/icon_notification_colored.svg')
-                : SvgPicture.asset('assets/svg/icon_notification.svg'),
-            label: 'Notification',
+            icon: Icon(Icons.villa),
+            label: 'Paket',
           ),
           BottomNavigationBarItem(
-            icon: _selectedIndex == 4
-                ? SvgPicture.asset('assets/svg/icon_user_colored.svg')
-                : SvgPicture.asset('assets/svg/icon_user.svg'),
-            label: 'User',
-          )
+            icon: Icon(Icons.car_rental),
+            label: 'Rental',
+          ),
         ],
         currentIndex: _selectedIndex,
+        selectedItemColor: Colors.red,
         onTap: _onItemTapped,
         backgroundColor: Colors.transparent,
         type: BottomNavigationBarType.fixed,
-        selectedFontSize: 12,
-        showSelectedLabels: false,
+        showSelectedLabels: true,
         showUnselectedLabels: false,
         elevation: 0,
       ),
     );
   }
 }
+
+        // currentIndex: _selectedIndex,
+        // onTap: _onItemTapped,
+        // backgroundColor: Colors.transparent,
+        // type: BottomNavigationBarType.fixed,
+        // selectedFontSize: 12,
