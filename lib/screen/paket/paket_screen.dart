@@ -11,7 +11,17 @@ class _PaketScreenState extends State<PaketScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('paket')),
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text('Paket'),
+            Text(' '),
+            Text('GoWis', style: TextStyle(color: Colors.blue))
+          ],
+        ),
+        elevation: 1.0,
+      ),
       body: const Center(
         child: Text('pakettt'),
       ),

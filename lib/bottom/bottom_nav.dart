@@ -1,41 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:tubes_abp_flutter/screen/home_screen.dart';
-import 'package:tubes_abp_flutter/screen/news_screen.dart';
-import 'package:tubes_abp_flutter/screen/paket_screen.dart';
-import 'package:tubes_abp_flutter/screen/rent_screen.dart';
+import 'package:tubes_abp_flutter/screen/berita/screen_article_list.dart';
+import 'package:tubes_abp_flutter/screen/home/home_screen.dart';
+import 'package:tubes_abp_flutter/screen/paket/paket_screen.dart';
+import 'package:tubes_abp_flutter/screen/rental/rent_screen.dart';
 
-class BottomNavigationBarGoWis extends StatefulWidget {
-  const BottomNavigationBarGoWis({Key? key}) : super(key: key);
+class BottomNav extends StatefulWidget {
+  const BottomNav({Key? key}) : super(key: key);
 
   @override
-  State<BottomNavigationBarGoWis> createState() =>
-      _BottomNavigationBarGoWisState();
+  State<BottomNav> createState() => _BottomNavState();
 }
 
-class _BottomNavigationBarGoWisState extends State<BottomNavigationBarGoWis> {
-  int _selectedIndex = 0;
+class _BottomNavState extends State<BottomNav> {
+  int selectIndex = 0;
 
   final List<Widget> _children = [
     // const Text('home'),
+    // const Text('news'),
     const HomeScreen(),
-    const NewsScreen(),
+    const ScreenArticleList(),
     const PaketScreen(),
     const RentScreen(),
   ];
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      selectIndex = index;
     });
   }
-
-  // var bottomNavStyle =
-  //     GoogleFonts.lato(fontSize: 12, fontWeight: FontWeight.w500);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _children[_selectedIndex],
+      body: _children[selectIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -55,21 +52,16 @@ class _BottomNavigationBarGoWisState extends State<BottomNavigationBarGoWis> {
             label: 'Rental',
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: selectIndex,
         selectedItemColor: Colors.red,
         onTap: _onItemTapped,
         backgroundColor: Colors.transparent,
         type: BottomNavigationBarType.fixed,
         showSelectedLabels: true,
         showUnselectedLabels: false,
+        selectedFontSize: 12,
         elevation: 0,
       ),
     );
   }
 }
-
-        // currentIndex: _selectedIndex,
-        // onTap: _onItemTapped,
-        // backgroundColor: Colors.transparent,
-        // type: BottomNavigationBarType.fixed,
-        // selectedFontSize: 12,

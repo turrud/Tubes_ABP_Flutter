@@ -11,7 +11,17 @@ class _RentScreenState extends State<RentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('rentall')),
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text('Rental'),
+            Text(' '),
+            Text('GoWis', style: TextStyle(color: Colors.blue))
+          ],
+        ),
+        elevation: 1.0,
+      ),
       body: const Center(
         child: Text('rentall'),
       ),

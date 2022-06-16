@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:tubes_abp_flutter/screen/home_screen.dart';
+import 'package:tubes_abp_flutter/bottom/bottom_nav.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -70,7 +70,7 @@ class WelcomeScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const HomeScreen()));
+                          builder: (context) => const BottomNav()));
                 },
                 child: const Icon(Icons.arrow_forward),
               ),

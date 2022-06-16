@@ -22,19 +22,25 @@ List<RecommendedModel> recommendations = recommendationsData
 
 var recommendationsData = [
   {
-    "name": "Semarang, Indonesia",
-    "tagLine": "Semarang Variety of Culture",
+    "name": "Kebun Binatang Bandung",
+    "tagLine": "Bandung Variety of ",
     "image":
-        "https://images.unsplash.com/photo-1607355739828-0bf365440db5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1444&q=80",
+        // "https://images.unsplash.com/photo-1607355739828-0bf365440db5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1444&q=80",
+        "https://asset.kompas.com/crops/8PDLGKBa-491pbsajlYSZPGfC1c=/0x0:0x0/750x500/data/photo/2020/03/02/5e5cea25b2ce2.jpg",
     "images": [
-      "https://images.unsplash.com/photo-1607355739828-0bf365440db5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1444&q=80",
-      "https://images.unsplash.com/photo-1577791465485-b80039b4d69a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80",
-      "https://images.unsplash.com/photo-1577404699057-04440b45986f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80",
-      "https://images.unsplash.com/photo-1549973890-38d08b229439?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=642&q=80",
-      "https://images.unsplash.com/photo-1622263096760-5c79f72884af?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+      "https://cdn-2.tstatic.net/tribunnews/foto/images/preview/hari-raya-nyepi-pengunjung-bandung-zoological-garden-melonjak_20210315_065936.jpg",
+      "https://cdns.klimg.com/newshub.id/news/2018/06/14/159326/750x500-jelang-lebaran-bandung-zoo-terus-berbenah-untuk-sambut-ratusan-ribu-pengunjung-180614y.jpg",
+      "https://geotourism.guide/wp-content/uploads/2021/09/Bandung-zoo-400x400.jpg",
+      "https://i.pinimg.com/736x/21/d4/45/21d445713eb3d6a771a90a0221b1a492.jpg"
+
+      // "https://images.unsplash.com/photo-1607355739828-0bf365440db5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1444&q=80",
+      // "https://images.unsplash.com/photo-1577791465485-b80039b4d69a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80",
+      // "https://images.unsplash.com/photo-1577404699057-04440b45986f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80",
+      // "https://images.unsplash.com/photo-1549973890-38d08b229439?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=642&q=80",
+      // "https://images.unsplash.com/photo-1622263096760-5c79f72884af?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
     ],
     "description":
-        "Semarang City is the capital city of Central Java Province, Indonesia as well as the fifth largest metropolitan city in Indonesia",
+        "Obyek wisata Lembang Park Zoo di Parongpong Kabupaten Bandung Barat KBB menawarkan sensasi berbeda makan bersama binatang buas Harimau",
     "price": 100
   },
   {

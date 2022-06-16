@@ -6,8 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:tubes_abp_flutter/models/beach_model.dart';
 import 'package:tubes_abp_flutter/models/popular_model.dart';
-import 'package:tubes_abp_flutter/screen/selected_place_screen.dart';
-import 'package:tubes_abp_flutter/widgets/bottom_navigation_bar.dart';
+import 'package:tubes_abp_flutter/screen/home/selected_place_screen.dart';
+// import 'package:tubes_abp_flutter/widgets/bottom_navigation_bar.dart';
 import 'package:tubes_abp_flutter/widgets/custom_tab_indicator.dart';
 import 'package:tubes_abp_flutter/models/recommended_model.dart';
 
@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const BottomNavigationBarGoWis(),
+      // bottomNavigationBar: const BottomNavigationBarGoWis(),
       body: SafeArea(
           child: ListView(
         physics: const BouncingScrollPhysics(),
