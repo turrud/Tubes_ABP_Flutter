@@ -56,6 +56,7 @@ class _ScreenArticleListState extends State<ScreenArticleList> {
           ],
         ),
         elevation: 1.0,
+        automaticallyImplyLeading: false,
       ),
       body: RefreshIndicator(
         onRefresh: () async {

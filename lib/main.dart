@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get_it/get_it.dart';
 import 'package:tubes_abp_flutter/models/article_controller.dart';
-import 'package:tubes_abp_flutter/screen/WelcomeScreen/welcome.dart';
+import 'package:tubes_abp_flutter/screen/paket/paket_screen.dart';
 
 import 'screen/themes/app_themes.dart';
 
@@ -27,6 +27,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: AppThemes.mainAppTheme,
-        home: const WelcomeScreen());
+        home: const PaketScreen());
   }
 }

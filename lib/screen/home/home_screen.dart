@@ -25,41 +25,49 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [Text('GoWis', style: TextStyle(color: Colors.blue))],
+        ),
+        automaticallyImplyLeading: false,
+        elevation: 1.0,
+      ),
       // bottomNavigationBar: const BottomNavigationBarGoWis(),
       body: SafeArea(
           child: ListView(
         physics: const BouncingScrollPhysics(),
         children: <Widget>[
           // navigasi
-          Container(
-            height: 57.6,
-            margin: const EdgeInsets.only(top: 28.8, left: 28.8, right: 28.8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Container(
-                  height: 57.6,
-                  width: 57.6,
-                  padding: const EdgeInsets.all(18),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(9.6),
-                    color: const Color(0x080a0928),
-                  ),
-                  child: SvgPicture.asset('assets/svg/icon_drawer.svg'),
-                ),
-                Container(
-                  height: 57.6,
-                  width: 57.6,
-                  padding: const EdgeInsets.all(18),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(9.6),
-                    color: const Color(0x080a0928),
-                  ),
-                  child: SvgPicture.asset('assets/svg/icon_search.svg'),
-                )
-              ],
-            ),
-          ),
+          // Container(
+          //   height: 57.6,
+          //   margin: const EdgeInsets.only(top: 28.8, left: 28.8, right: 28.8),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: <Widget>[
+          //       Container(
+          //         height: 57.6,
+          //         width: 57.6,
+          //         padding: const EdgeInsets.all(18),
+          //         decoration: BoxDecoration(
+          //           borderRadius: BorderRadius.circular(9.6),
+          //           color: const Color(0x080a0928),
+          //         ),
+          //         child: SvgPicture.asset('assets/svg/icon_drawer.svg'),
+          //       ),
+          //       Container(
+          //         height: 57.6,
+          //         width: 57.6,
+          //         padding: const EdgeInsets.all(18),
+          //         decoration: BoxDecoration(
+          //           borderRadius: BorderRadius.circular(9.6),
+          //           color: const Color(0x080a0928),
+          //         ),
+          //         child: SvgPicture.asset('assets/svg/icon_search.svg'),
+          //       )
+          //     ],
+          //   ),
+          // ),
           // title text
           Padding(
             padding: const EdgeInsets.only(top: 48, left: 28.8),

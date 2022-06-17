@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tubes_abp_flutter/screen/berita/screen_article_list.dart';
 import 'package:tubes_abp_flutter/screen/home/home_screen.dart';
 import 'package:tubes_abp_flutter/screen/paket/paket_screen.dart';
-import 'package:tubes_abp_flutter/screen/rental/rent_screen.dart';
+import 'package:tubes_abp_flutter/screen/rental/screen_rental.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({Key? key}) : super(key: key);
@@ -58,7 +58,7 @@ class _BottomNavState extends State<BottomNav> {
         backgroundColor: Colors.transparent,
         type: BottomNavigationBarType.fixed,
         showSelectedLabels: true,
-        showUnselectedLabels: false,
+        showUnselectedLabels: true,
         selectedFontSize: 12,
         elevation: 0,
       ),
