@@ -25,15 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [Text('GoWis', style: TextStyle(color: Colors.blue))],
-        ),
-        automaticallyImplyLeading: false,
-        elevation: 1.0,
-      ),
-      // bottomNavigationBar: const BottomNavigationBarGoWis(),
       body: SafeArea(
           child: ListView(
         physics: const BouncingScrollPhysics(),
@@ -70,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // ),
           // title text
           Padding(
-            padding: const EdgeInsets.only(top: 48, left: 28.8),
+            padding: const EdgeInsets.only(top: 10, left: 28.8),
             child: Text(
               'Explore\nthe Nature with us',
               style: GoogleFonts.playfairDisplay(
@@ -189,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
               controller: _pageController,
               count: recommendations.length,
               effect: const ExpandingDotsEffect(
-                  activeDotColor: Color(0xFF8a8a8a),
+                  activeDotColor: Color.fromARGB(255, 255, 25, 25),
                   dotColor: Color(0xFFababab),
                   dotHeight: 4.8,
                   dotWidth: 6,

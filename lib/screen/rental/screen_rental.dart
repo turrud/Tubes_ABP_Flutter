@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:tubes_abp_flutter/screen/rental/detail_page.dart';
+import 'package:tubes_abp_flutter/screen/rental/detail_page_rental.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tubes_abp_flutter/models/rental_model.dart';
 import 'package:tubes_abp_flutter/widgets/constants.dart';
@@ -151,8 +151,8 @@ class _RentScreenState extends State<RentScreen> {
                                     borderRadius: BorderRadius.circular(20)),
                                 child: Text(
                                   kendaraanList[index].harga.toString(),
-                                  style: TextStyle(
-                                    color: Constants.primaryColor,
+                                  style: const TextStyle(
+                                    color: Colors.black,
                                     fontSize: 16,
                                   ),
                                 ),
@@ -249,10 +249,10 @@ class _RentScreenState extends State<RentScreen> {
                             padding: const EdgeInsets.only(right: 10),
                             child: Text(
                               kendaraanList[index].harga.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
-                                  color: Constants.primaryColor),
+                                  color: Colors.black87),
                             ),
                           ),
                         ],

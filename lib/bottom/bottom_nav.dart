@@ -16,7 +16,6 @@ class _BottomNavState extends State<BottomNav> {
 
   final List<Widget> _children = [
     // const Text('home'),
-    // const Text('news'),
     const HomeScreen(),
     const ScreenArticleList(),
     const PaketScreen(),

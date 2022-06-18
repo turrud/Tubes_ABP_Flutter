@@ -1,13 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tubes_abp_flutter/screen/paket/detail_paket_screen.dart';
-
-class Constants {
-  // ignore: constant_identifier_names
-  static const PRIMARY_COLOR = Color(0xff00B761);
-}
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:tubes_abp_flutter/screen/paket/selected_paket_screen.dart';
+import 'package:tubes_abp_flutter/models/recommended_model.dart';
 
 class PaketScreen extends StatefulWidget {
   const PaketScreen({Key? key}) : super(key: key);
@@ -17,249 +15,128 @@ class PaketScreen extends StatefulWidget {
 }
 
 class _PaketScreenState extends State<PaketScreen> {
+  // page controller
+  final _pageController = PageController(viewportFraction: 0.877);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Constants.PRIMARY_COLOR,
-        showSelectedLabels: false,
-        items: [
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset("assets/svg/ic_home.svg"), label: ""),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset("assets/svg/ic_favourite.svg"), label: ""),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset("assets/svg/ic_notification.svg"), label: ""),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset("assets/svg/ic_profile.svg"), label: ""),
-        ],
-      ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: initWidget(),
-        ),
-      ),
-    );
-  }
+          child: ListView(
+        physics: const BouncingScrollPhysics(),
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 40, left: 20.8, bottom: 17.3),
+            child: Text(
+              'GoWis\nPaket Wisata Bandung',
+              style: GoogleFonts.playfairDisplay(
+                  fontSize: 35.6, fontWeight: FontWeight.w500),
+            ),
+          ),
 
-  Widget initWidget() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [buildGreetings(), buildSearch(), buildPlantsList()],
-    );
-  }
-
-  Widget buildGreetings() {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      child: Stack(
-        children: [
           Container(
-            margin: const EdgeInsets.only(left: 25, top: 25),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  "Welcome to",
-                  style: TextStyle(
-                    fontFamily: GoogleFonts.roboto().fontFamily,
-                    fontSize: 23,
-                  ),
-                ),
-                Text(
-                  'Plant Shop',
-                  style: TextStyle(
-                    color: Constants.PRIMARY_COLOR,
-                    fontFamily: GoogleFonts.roboto().fontFamily,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Positioned(
-            right: 25,
-            top: 25,
-            child: SvgPicture.asset('assets/svg/ic_cart.svg'),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget buildSearch() {
-    return Container(
-      margin: const EdgeInsets.only(left: 25, right: 25, top: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: 4,
-            child: Container(
-              height: 55,
-              padding: const EdgeInsets.only(left: 15, top: 15, bottom: 15),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
-                color: Color(0xffE8E8E8),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const Expanded(
-                    flex: 1,
-                    child: Icon(
-                      Icons.search,
-                      size: 25,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 6,
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 5, right: 10),
-                      child: Text(
-                        'Search for items here',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontFamily: GoogleFonts.roboto().fontFamily,
+            height: 515.9,
+            margin: const EdgeInsets.only(top: 16),
+            child: PageView(
+              physics: const BouncingScrollPhysics(),
+              controller: _pageController,
+              scrollDirection: Axis.horizontal,
+              children: List.generate(
+                  recommendations.length,
+                  (int index) => GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => SelectedPaketScreen(
+                                  recommendedModel: recommendations[index])));
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(
+                              right: 28.8, left: 28.8, bottom: 28.8),
+                          width: 333.6,
+                          height: 218.4,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                      recommendations[index].image))),
+                          child: Stack(
+                            children: <Widget>[
+                              Positioned(
+                                  bottom: 19.2,
+                                  left: 19.2,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(4.8),
+                                    child: BackdropFilter(
+                                      filter: ImageFilter.blur(
+                                          sigmaY: 19.2, sigmaX: 19.2),
+                                      child: Container(
+                                        height: 36,
+                                        padding: const EdgeInsets.only(
+                                            left: 16.72, right: 14.4),
+                                        alignment: Alignment.centerLeft,
+                                        child: Row(
+                                          children: <Widget>[
+                                            SvgPicture.asset(
+                                                'assets/svg/icon_location.svg'),
+                                            const SizedBox(
+                                              width: 9.52,
+                                            ),
+                                            Text(
+                                              recommendations[index].name,
+                                              style: GoogleFonts.lato(
+                                                fontWeight: FontWeight.w700,
+                                                color: Colors.white,
+                                                fontSize: 16.8,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ))
+                            ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                      )),
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              margin: const EdgeInsets.only(left: 10),
-              padding: const EdgeInsets.only(top: 15, bottom: 15),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
-                color: Constants.PRIMARY_COLOR,
-              ),
-              child: SvgPicture.asset(
-                "assets/svg/ic_filter.svg",
-              ),
+          // dots indikator
+
+          Padding(
+            padding: const EdgeInsets.only(left: 52, top: 4.8),
+            child: SmoothPageIndicator(
+              controller: _pageController,
+              count: recommendations.length,
+              effect: const ExpandingDotsEffect(
+                  activeDotColor: Color.fromARGB(255, 255, 16, 16),
+                  dotColor: Color(0xFFababab),
+                  dotHeight: 4.8,
+                  dotWidth: 6,
+                  spacing: 4.8),
             ),
-          )
+          ),
+
+          // Text widget populer kategori
+
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 48, left: 28.8, right: 28.8),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     crossAxisAlignment: CrossAxisAlignment.center,
+          //     children: <Widget>[
+          //       Text(
+          //         'Ayo di Pilihhh ✌ ',
+          //         style: GoogleFonts.playfairDisplay(
+          //             fontSize: 28,
+          //             fontWeight: FontWeight.w700,
+          //             color: const Color(0xFF000000)),
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
-      ),
-    );
-  }
-
-  Widget buildPlantsList() {
-    return Container(
-        margin: const EdgeInsets.only(left: 25, right: 10, bottom: 20),
-        child: StaggeredGrid.count(
-          crossAxisCount: 2,
-          children: [
-            plantsListTile(
-                "assets/images/plant_1.png", "Succulent Plant", "\$39.99", true, true),
-            plantsListTile(
-                "assets/images/plant_2.png", "Dragon Plant", "\$29.99", false, false),
-            plantsListTile(
-                "assets/images/plant_3.png", "Ravenea Plant", "\$19.99", false, true),
-            plantsListTile(
-                "assets/images/plant_4.png", "Potted Plant", "\$49.99", true, false),
-            plantsListTile("assets/images/plant_5.png", "Ravenea Plant 2", "\$9.99",
-                false, false),
-            plantsListTile("assets/images/plant_6.png", "Succulent Plant 2", "\$39.99",
-                true, true),
-          ],
-        ));
-  }
-
-  Widget plantsListTile(
-      String img, String name, String price, bool isFavourite, bool addToCart) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const DetailsPage()));
-      },
-      child: Container(
-        margin: const EdgeInsets.only(right: 20, top: 20),
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
-          color: Color(0xffE8E8E8),
-        ),
-        child: Stack(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(bottom: 15),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 15),
-                    alignment: Alignment.center,
-                    child: Image.asset(img),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 15, top: 10),
-                    child: Text(
-                      name,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: GoogleFonts.roboto().fontFamily,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 15, top: 5),
-                    child: Text(
-                      price,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: GoogleFonts.roboto().fontFamily,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // Like Button
-            Positioned(
-              right: 1,
-              child: Container(
-                margin: const EdgeInsets.all(10),
-                child: SvgPicture.asset(
-                  isFavourite
-                      ? "assets/svg/ic_like_selected.svg"
-                      : "assets/svg/ic_like_unselected.svg",
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 1,
-              right: 1,
-              child: Container(
-                height: 20,
-                width: 20,
-                margin: const EdgeInsets.only(right: 10, bottom: 14),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(4)),
-                  color: addToCart ? Constants.PRIMARY_COLOR : Colors.grey,
-                ),
-                child: const Icon(
-                  Icons.add,
-                  size: 16,
-                  color: Colors.white,
-                ),
-              ),
-            )
-            // Cart Button
-          ],
-        ),
-      ),
+      )),
     );
   }
 }

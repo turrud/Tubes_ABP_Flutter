@@ -41,16 +41,6 @@ class _DetailPageState extends State<DetailPage> {
                     ),
                   ),
                 ),
-                GestureDetector(
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: Constants.primaryColor.withOpacity(.15),
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
@@ -117,31 +107,40 @@ class _DetailPageState extends State<DetailPage> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(kendaraanList[widget.kendaraanId].nama, style: TextStyle(
-                            color: Constants.primaryColor,
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold,
-                          ),),
-                          const SizedBox(height: 10,),
-                          Text(r'$' + kendaraanList[widget.kendaraanId].harga.toString(), style: TextStyle(
-                            color: Constants.blackColor,
-                            fontSize: 24.0,
-                            fontWeight: FontWeight.bold,
-                          ),),
+                          Text(
+                            kendaraanList[widget.kendaraanId].nama,
+                            style: const TextStyle(
+                              color: Colors.black87,
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            kendaraanList[widget.kendaraanId].harga.toString(),
+                            style: TextStyle(
+                              color: Constants.blackColor,
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ],
                       ),
                     ],
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   Expanded(
                     child: Text(
                       kendaraanList[widget.kendaraanId].decription,
                       textAlign: TextAlign.justify,
                       style: TextStyle(
-                        height: 1.5,
-                        fontSize: 18,
-                        color: Constants.blackColor.withOpacity(.7)
-                      ),
+                          height: 1.5,
+                          fontSize: 18,
+                          color: Constants.blackColor.withOpacity(.7)),
                     ),
                   ),
                 ],
@@ -151,34 +150,18 @@ class _DetailPageState extends State<DetailPage> {
         ],
       ),
       floatingActionButton: SizedBox(
-        width: size.width * .9,
+        width: size.width * .4,
         height: 50,
         child: Row(
           children: [
-            Container(
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                color: Constants.primaryColor.withOpacity(.5),
-                borderRadius: BorderRadius.circular(50),
-                boxShadow: [
-                  BoxShadow(
-                    offset: const Offset(0, 1),
-                    blurRadius: 5,
-                    color: Constants.primaryColor.withOpacity(0.3),
-                  ),
-                ],
-              ),
-              child: const Icon(Icons.shopping_cart, color: Colors.white,),
-            ),
             const SizedBox(
               width: 20,
             ),
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
-                    color: Constants.primaryColor,
-                    borderRadius: BorderRadius.circular(10),
+                  color: Constants.primaryColor,
+                  borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
                       offset: const Offset(0, 1),
@@ -188,10 +171,13 @@ class _DetailPageState extends State<DetailPage> {
                   ],
                 ),
                 child: const Center(
-                  child: Text('BUY NOW', style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                  ),),
+                  child: Text(
+                    'RENT',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                    ),
+                  ),
                 ),
               ),
             ),
