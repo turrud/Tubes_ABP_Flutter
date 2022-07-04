@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tubes_abp_flutter/models/article_controller.dart';
@@ -7,6 +10,12 @@ import 'package:tubes_abp_flutter/models/articles_model.dart';
 import 'package:get_it/get_it.dart';
 import 'package:tubes_abp_flutter/screen/berita/article_view.dart';
 import 'package:tubes_abp_flutter/screen/themes/app_themes.dart';
+
+
+Future<List<dynamic>> fetchData() async {
+  var result = await http.get(Uri.parse("http://10.0.2.2:8000/api/news"));
+  return json.decode(result.body)['data'];
+}
 
 // locator
 final locator = GetIt.instance;
@@ -58,35 +67,40 @@ class _ScreenArticleListState extends State<ScreenArticleList> {
         elevation: 1.0,
         automaticallyImplyLeading: false,
       ),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          getArticles();
-        },
-        child: FutureBuilder<List<Article>>(
-          future: _articles,
-          builder: (context, snapshot) {
-            Widget data;
-            if (snapshot.hasError) {
-              Fluttertoast.showToast(msg: Message.ERROR_MESSAGE);
-              data = Center(
-                  child: Text(snapshot.error.toString(),
-                      textAlign: TextAlign.center));
-            } else if (snapshot.hasData) {
-              Fluttertoast.showToast(msg: Message.SUCCESS_MESSAGE);
-              final articleList = snapshot.data;
-              data = articleList == null
-                  ? const Center(child: Text('Received data is null'))
-                  : ListView.builder(
-                      itemCount: articleList.length,
-                      itemBuilder: (context, i) {
-                        return ArticleView(article: articleList[i]);
-                      });
-            } else {
-              data = const Center(child: CircularProgressIndicator());
-            }
-            return data;
-          },
-        ),
+      body: FutureBuilder(
+        future: fetchData(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          return RefreshIndicator(
+            onRefresh: () async {
+              getArticles();
+            },
+            child: FutureBuilder<List<Article>>(
+              future: _articles,
+              builder: (context, snapshot) {
+                Widget data;
+                if (snapshot.hasError) {
+                  Fluttertoast.showToast(msg: Message.ERROR_MESSAGE);
+                  data = Center(
+                      child: Text(snapshot.error.toString(),
+                          textAlign: TextAlign.center));
+                } else if (snapshot.hasData) {
+                  Fluttertoast.showToast(msg: Message.SUCCESS_MESSAGE);
+                  final articleList = snapshot.data;
+                  data = articleList == null
+                      ? const Center(child: Text('Received data is null'))
+                      : ListView.builder(
+                          itemCount: articleList.length,
+                          itemBuilder: (context, i) {
+                            return ArticleView(article: articleList[i]);
+                          });
+                } else {
+                  data = const Center(child: CircularProgressIndicator());
+                }
+                return data;
+              },
+            ),
+          );
+        }
       ),
     );
   }

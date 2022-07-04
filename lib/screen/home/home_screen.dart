@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:ui';
+import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -10,6 +12,11 @@ import 'package:tubes_abp_flutter/screen/home/selected_place_screen.dart';
 // import 'package:tubes_abp_flutter/widgets/bottom_navigation_bar.dart';
 import 'package:tubes_abp_flutter/widgets/custom_tab_indicator.dart';
 import 'package:tubes_abp_flutter/models/recommended_model.dart';
+
+Future<List<dynamic>> fetchData() async {
+  var result = await http.get(Uri.parse("http://10.0.2.2:8000/api/news"));
+  return json.decode(result.body)['data'];
+}
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -106,72 +113,80 @@ class _HomeScreenState extends State<HomeScreen> {
 
           // isi tabbar rekomendasi
 
-          Container(
-            height: 218.4,
-            margin: const EdgeInsets.only(top: 16),
-            child: PageView(
-              physics: const BouncingScrollPhysics(),
-              controller: _pageController,
-              scrollDirection: Axis.horizontal,
-              children: List.generate(
-                  recommendations.length,
-                  (int index) => GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => SelectedPlaceScreen(
-                                  recommendedModel: recommendations[index])));
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 28.8),
-                          width: 333.6,
-                          height: 218.4,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(9.6),
-                              image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                      recommendations[index].image))),
-                          child: Stack(
-                            children: <Widget>[
-                              Positioned(
-                                  bottom: 19.2,
-                                  left: 19.2,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(4.8),
-                                    child: BackdropFilter(
-                                      filter: ImageFilter.blur(
-                                          sigmaY: 19.2, sigmaX: 19.2),
-                                      child: Container(
-                                        height: 36,
-                                        padding: const EdgeInsets.only(
-                                            left: 16.72, right: 14.4),
-                                        alignment: Alignment.centerLeft,
-                                        child: Row(
-                                          children: <Widget>[
-                                            SvgPicture.asset(
-                                                'assets/svg/icon_location.svg'),
-                                            const SizedBox(
-                                              width: 9.52,
-                                            ),
-                                            Text(
-                                              recommendations[index].name,
-                                              style: GoogleFonts.lato(
-                                                fontWeight: FontWeight.w700,
-                                                color: Colors.white,
-                                                fontSize: 16.8,
+          FutureBuilder(
+              future: fetchData(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                return Container(
+                  height: 218.4,
+                  margin: const EdgeInsets.only(top: 16),
+                  child: PageView(
+                    physics: const BouncingScrollPhysics(),
+                    controller: _pageController,
+                    scrollDirection: Axis.horizontal,
+                    children: List.generate(
+                        snapshot.data.length,
+                        (int index) => GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => SelectedPlaceScreen(
+                                        recommendedModel:
+                                            snapshot.data[index])));
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(right: 28.8),
+                                width: 333.6,
+                                height: 218.4,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(9.6),
+                                    image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(
+                                            snapshot.data[index]['url']))),
+                                child: Stack(
+                                  children: <Widget>[
+                                    Positioned(
+                                        bottom: 19.2,
+                                        left: 19.2,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(4.8),
+                                          child: BackdropFilter(
+                                            filter: ImageFilter.blur(
+                                                sigmaY: 19.2, sigmaX: 19.2),
+                                            child: Container(
+                                              height: 36,
+                                              padding: const EdgeInsets.only(
+                                                  left: 16.72, right: 14.4),
+                                              alignment: Alignment.centerLeft,
+                                              child: Row(
+                                                children: <Widget>[
+                                                  SvgPicture.asset(
+                                                      'assets/svg/icon_location.svg'),
+                                                  const SizedBox(
+                                                    width: 9.52,
+                                                  ),
+                                                  Text(
+                                                    snapshot.data[index]
+                                                        ['title'],
+                                                    style: GoogleFonts.lato(
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      color: Colors.white,
+                                                      fontSize: 16.8,
+                                                    ),
+                                                  )
+                                                ],
                                               ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ))
-                            ],
-                          ),
-                        ),
-                      )),
-            ),
-          ),
+                                            ),
+                                          ),
+                                        ))
+                                  ],
+                                ),
+                              ),
+                            )),
+                  ),
+                );
+              }),
           // dots indikator
 
           Padding(
@@ -216,42 +231,42 @@ class _HomeScreenState extends State<HomeScreen> {
 
           // populer kategori
 
-          Container(
-            margin: const EdgeInsets.only(top: 35.6),
-            height: 45.6,
-            child: ListView.builder(
-              itemCount: populars.length,
-              scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.only(left: 28.8, right: 9.6),
-              itemBuilder: (context, index) {
-                return Container(
-                  margin: const EdgeInsets.only(right: 19.2),
-                  height: 45.6,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(9.6),
-                    color: Color(populars[index].color),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      const SizedBox(
-                        width: 19.2,
-                      ),
-                      Image.asset(
-                        populars[index].image,
-                        height: 16.8,
-                      ),
-                      const SizedBox(
-                        width: 19.2,
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
+          // Container(
+          //   margin: const EdgeInsets.only(top: 35.6),
+          //   height: 45.6,
+          //   child: ListView.builder(
+          //     itemCount: populars.length,
+          //     scrollDirection: Axis.horizontal,
+          //     physics: const BouncingScrollPhysics(),
+          //     padding: const EdgeInsets.only(left: 28.8, right: 9.6),
+          //     itemBuilder: (context, index) {
+          //       return Container(
+          //         margin: const EdgeInsets.only(right: 19.2),
+          //         height: 45.6,
+          //         decoration: BoxDecoration(
+          //           borderRadius: BorderRadius.circular(9.6),
+          //           color: Color(populars[index].color),
+          //         ),
+          //         child: Row(
+          //           crossAxisAlignment: CrossAxisAlignment.center,
+          //           mainAxisAlignment: MainAxisAlignment.center,
+          //           children: <Widget>[
+          //             const SizedBox(
+          //               width: 19.2,
+          //             ),
+          //             Image.asset(
+          //               populars[index].image,
+          //               height: 16.8,
+          //             ),
+          //             const SizedBox(
+          //               width: 19.2,
+          //             ),
+          //           ],
+          //         ),
+          //       );
+          //     },
+          //   ),
+          // ),
 
           // listview beach
 

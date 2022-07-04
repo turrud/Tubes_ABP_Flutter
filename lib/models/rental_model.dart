@@ -90,5 +90,4 @@ class Kendaraan {
         decription:
             'Mobil rongsok berkualitas tinggi dengan kapasitas 5 orang. Kapasitasnya bisa diubah sesuai kebutuhan. Mobil ini bisa dibawa kemana saja.'),
   ];
-
 }
