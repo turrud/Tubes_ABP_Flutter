@@ -23,14 +23,9 @@ class RentScreen extends StatefulWidget {
 class _RentScreenState extends State<RentScreen> {
   @override
   Widget build(BuildContext context) {
-    int selectedIndex = 0;
     Size size = MediaQuery.of(context).size;
 
     List<Kendaraan> kendaraanList = Kendaraan.kendaraanList;
-
-    List<String> kendaraanTypes = [
-      'Recommended',
-    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -69,42 +64,9 @@ class _RentScreenState extends State<RentScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 50,
-                    width: size.width,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: kendaraanTypes.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selectedIndex = index;
-                              });
-                              debugPrint(selectedIndex.toString());
-                            },
-                            child: Text(
-                              kendaraanTypes[index],
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: selectedIndex == index
-                                    ? FontWeight.bold
-                                    : FontWeight.w300,
-                                color: selectedIndex == index
-                                    ? Constants.primaryColor
-                                    : Constants.blackColor,
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  SizedBox(
                     height: size.height * .3,
                     child: ListView.builder(
-                        itemCount: kendaraanList.length,
+                        itemCount: snapshot.data.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (BuildContext context, int index) {
                           return GestureDetector(
@@ -130,8 +92,8 @@ class _RentScreenState extends State<RentScreen> {
                                     right: 25,
                                     top: 10,
                                     bottom: 25,
-                                    child: Image.asset(
-                                      kendaraanList[index].imageURL,
+                                    child: Image.network(
+                                      snapshot.data[index]['url'],
                                     ),
                                   ),
                                   Positioned(
@@ -142,7 +104,8 @@ class _RentScreenState extends State<RentScreen> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          kendaraanList[index].nama,
+                                          snapshot.data[index]
+                                              ['nama_kendaraan'],
                                           style: const TextStyle(
                                             color: Colors.white70,
                                             fontSize: 15,
@@ -163,7 +126,7 @@ class _RentScreenState extends State<RentScreen> {
                                           borderRadius:
                                               BorderRadius.circular(20)),
                                       child: Text(
-                                        kendaraanList[index].harga.toString(),
+                                        snapshot.data[index]['harga'],
                                         style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 16,
@@ -252,7 +215,8 @@ class _RentScreenState extends State<RentScreen> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            snapshot.data[index]['nama_kendaraan'],
+                                            snapshot.data[index]
+                                                ['nama_kendaraan'],
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18,

@@ -1,4 +1,4 @@
-// ignore: file_names, camel_case_types
+
 class Kendaraan {
   final int id;
   final String harga;
